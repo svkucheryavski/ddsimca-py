@@ -1,0 +1,90 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ddsimca"
+version = "1.0.0"
+description = "Implementation of Data Driven SIMCA one class classification method"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+   { name="Sergey Kucheryavskiy", email="svkucheryavski@gmail.com" },
+]
+
+keywords = ["one-class-classification", "anomaly-detection", "chemometrics", "simca", "ddsimca"]
+
+classifiers = [
+   "Development Status :: 4 - Beta",
+   "Intended Audience :: Science/Research",
+   "Topic :: Scientific/Engineering :: Artificial Intelligence",
+   "Programming Language :: Python :: 3",
+   "Programming Language :: Python :: 3.8",
+   "Programming Language :: Python :: 3.9",
+   "Programming Language :: Python :: 3.10",
+   "Programming Language :: Python :: 3.11",
+   "Programming Language :: Python :: 3.12",
+   "License :: OSI Approved :: MIT License",
+   "Operating System :: OS Independent",
+]
+
+# Runtime dependencies
+dependencies = [
+    "numpy>=1.19.0",
+    "scipy>=1.6.0",
+    "pandas>=2.2.0",
+    "matplotlib>=3.8.0",
+    "prcv>1.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/svkucheryavski/ddsimca"
+Documentation = "https://github.com/svkucheryavski/ddsimca"
+Repository = "https://github.com/svkucheryavski/ddsimca"
+"Bug Tracker" = "https://github.com/svkucheryavski/ddsimca/issues"
+
+# Hatchling-specific configuration
+
+[tool.hatch.build.targets.wheel]
+packages = ["ddsimca"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/ddsimca",
+    "/tests",
+    "/demo",
+    "README.md",
+    "LICENSE",
+]
+
+# Test configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Code formatting
+[tool.black]
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hatch
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
