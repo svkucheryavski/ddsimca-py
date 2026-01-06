@@ -20,6 +20,10 @@ Simply download the dataset and unzip it to your working directory, where you ha
 
 ## Releases
 
+**1.0.3** (6/1/2026)
+* small improvements to code.
+* better documentation text.
+
 **1.0.2** (1/1/2026)
 * initial release
 
@@ -31,6 +35,6 @@ Simply download the dataset and unzip it to your working directory, where you ha
 
 2. A. Pomerantsev, O. Rodionova. *Selectivity in Nontargeted Qualitative Analysis*. Analytica Chimica Acta, 1332, 2024. DOI: [10.1016/j.aca.2024.343352](https://doi.org/10.1016/j.aca.2024.343352).
 
-3. A. Pomerantsev, O. Rodionova. *Popular decision rules in SIMCA: Critical review*. Journal of Chemometrics, 34 (8), 2020. DOI: [10.1002/cem.3250](https://doi.org/10.1002/cem.3250) 
+3. A. Pomerantsev, O. Rodionova. *Popular decision rules in SIMCA: Critical review*. Journal of Chemometrics, 34 (8), 2020. DOI: [10.1002/cem.3250](https://doi.org/10.1002/cem.3250)
 
 4. A. Pomerantsev, O. Rodionova. *On the type II error in SIMCA method*. Journal of Chemometrics, 28 (6), 2014. DOI: [10.1002/cem.2610](https://doi.org/10.1002/cem.2610).

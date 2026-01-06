@@ -6,7 +6,7 @@ date: 01/01/2026
 
 # User guide for `ddsimca` package
 
-This guide is mainly based on [DD-SIMCA tutorial paper](https://doi.org/10.1002/cem.3556) and most of the code below reproduces outcomes and figures shown in the paper. Therefore it is higly recommended to download and read the paper first (it is freely available for everyone) and then come back to this document. 
+This guide is mainly based on [DD-SIMCA tutorial paper](https://doi.org/10.1002/cem.3556) and most of the code below reproduces outcomes and figures shown in the paper. Therefore it is higly recommended to download and read the paper first (it is freely available for everyone) and then come back to this document.
 
 Before you start, make sure that you have installed the `ddsimca` package. If not, just uncomment and run the following code:
 
@@ -20,7 +20,7 @@ It will automatically install all necessary packages, including `prcv`, which im
 
 ## Training DD-SIMCA model and detection of outliers
 
-[Download](https://mda.tools/ddsimca/Oregano.zip) zip archive with the Oregano dataset used in the tutorial.  It consists of several CSV files, just unzip them all to the same folder where you have this document. 
+[Download](https://mda.tools/ddsimca/Oregano.zip) zip archive with the Oregano dataset used in the tutorial.  It consists of several CSV files, just unzip them all to the same folder where you have this document.
 
 The following code loads training set from a CSV file and shows first five rows and five columns of the set:
 
@@ -272,10 +272,10 @@ ax1 = plt.subplot(1, 3, 1)
 r_test_all.plotAcceptance(ax1, do_log = True)
 
 ax2 = plt.subplot(1, 3, 2)
-r_test_all.plotAcceptance(ax2, do_log = True, show = "strangers")
+r_test_all.plotAcceptance(ax2, do_log = True, show_set = "strangers")
 
 ax3 = plt.subplot(1, 3, 3)
-r_test_all.plotAcceptance(ax3, do_log = True, show = "members")
+r_test_all.plotAcceptance(ax3, do_log = True, show_set = "members")
 ```
 Also, in this case all figures of merit, including accuracy and efficiency, are available:
 
@@ -332,13 +332,20 @@ ax2.legend()
 Similar to web-application you can also make plot with expected vs. observed alien objects and selectivity vs. sensitivity plot (if there are non-target class objects in the dataset):
 
 ```python
-plt.figure(figsize = (12, 5))
+plt.figure(figsize = (15, 4))
 
-ax1 = plt.subplot(1, 2, 1)
+ax1 = plt.subplot(1, 3, 1)
 r_test_all.plotAliens(ax1)
 
-ax2 = plt.subplot(1, 2, 2)
+ax2 = plt.subplot(1, 3, 2)
 r_test_all.plotSelectivity(ax2)
+
+ax2 = plt.subplot(1, 3, 3)
+r_test_all.plotSelectivity(ax2, ncomp = 1, color = "tab:blue", label = "A = 1")
+r_test_all.plotSelectivity(ax2, ncomp = 3, color = "tab:green", label = "A = 3")
+r_test_all.plotSelectivity(ax2, ncomp = 5, color = "tab:orange", label = "A = 5")
+ax2.set_title("Selectivity")
+ax2.legend()
 ```
 
 Similar to distance, extremes, and acceptance plots, the plots above are made for the optimal number of components we pre-selected earlier (`A = 3`). You can change this by providing value using `ncomp` argument to the plotting methods.
@@ -357,7 +364,7 @@ You can get access to all computed values and do whatever you want. For example 
 m_final.V[:5, :5]
 ```
 
-The distance parameters are saved as dictionaries `hParams`, `qParams` and `fParams`. Each dictionary has two fields, `classic` and `robust`. Each field contains another tuple with scaling factors (e.g. `h0`) and number of degrees of freedom (e.g. `Nh`) computed for each component in the model. Here is an example for score distance parameters computed using classic estimates: 
+The distance parameters are saved as dictionaries `hParams`, `qParams` and `fParams`. Each dictionary has two fields, `classic` and `robust`. Each field contains another tuple with scaling factors (e.g. `h0`) and number of degrees of freedom (e.g. `Nh`) computed for each component in the model. Here is an example for score distance parameters computed using classic estimates:
 
 ```python
 m_final.hParams["classic"]

@@ -4,7 +4,7 @@ import pandas as pd
 
 
 
-from ddsimca import DDSIMCA, DDSIMCARes, get_distparams, get_limits, process_members, process_strangers
+from ddsimca import DDSIMCA, get_distparams, get_limits, process_members, process_strangers
 
 class TestDDSIMCARes(unittest.TestCase):
 
@@ -103,7 +103,7 @@ class TestProcessing(unittest.TestCase):
 
         eCrit = 9.
         oCrit = 10.
-        roles = np.zeros(len(f))
+        roles = np.zeros(len(f), dtype = np.int16)
 
         TP, FN = process_members(f, eCrit, oCrit, roles, ind)
         np.testing.assert_array_equal(roles, np.array([0, 0, 0, 2, 2, 1, 0, 0, 1]))
@@ -122,7 +122,6 @@ class TestProcessing(unittest.TestCase):
         f = np.array([11.0, 12., 13.1, 15.2, 10.1, 9.8, 2.2, 3.9, 29.5])
         ind = np.array([True, True, True, True, True, True, False, True, True])
         eCrit = 9.
-        oCrit = 10.
         roles = np.zeros(len(f), dtype = np.int16)
 
         TN, FP, beta, s, f0, hz, Mz, Sz, k, m = process_strangers(f, 12, eCrit, roles, ind)
